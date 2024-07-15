@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,3 +18,5 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.admin');
     })->name('admin.dashboard');
 });
+
+Route::get('/order', [OrderController::class, 'showOrderPage'])->name('order.page');
