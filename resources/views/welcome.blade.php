@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="flex items-end">
-            <button class="bg-red-500 text-white px-4 py-2 rounded-lg">Order Now</button>
+            <a href="{{ route('order.page') }}" class="bg-red-500 text-white px-4 py-2 rounded-lg">Order Now</a>
         </div>
     </div>
 </div>
