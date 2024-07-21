@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 <body class="bg-[#EAD8C0] flex items-center justify-center min-h-screen">
-    <div class="bg-[#FFF8DB] p-6 rounded-lg shadow-2xl w-11/12 max-w-8xl flex items-center justify-center">
-        <img src="{{ asset('images/coffee-beans-66.png') }}" alt="coffee images" class="w-96 h-96 p-5">
-        <div class="bg-[#EAD8C0] m-20 p-10 rounded-lg shadow-lg w-full max-w-lg">
-            <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
+    <div class="bg-[#FFF8DB] p-4 rounded-lg shadow-2xl w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center">
+        <img src="{{ asset('images/coffee-beans-66.png') }}" alt="coffee images" class="w-48 h-48 lg:w-72 lg:h-72 p-3 m-8">
+        <div class="bg-[#EAD8C0] mt-5 lg:mt-8 mb-8 lg:ml-5 p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-xl font-bold mb-6 text-center">Login</h1>
             <form method="POST" action="{{ route('login.post') }}">
                 @csrf
                 <div class="mb-4">

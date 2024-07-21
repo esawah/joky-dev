@@ -22,7 +22,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['username' => $credentials['username'], 'email' => $credentials['email'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
-            return redirect()->intended('admin');
+            return redirect()->intended('menu');
         }
 
         return back()->withErrors([

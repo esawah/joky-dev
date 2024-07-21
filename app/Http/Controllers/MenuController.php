@@ -11,6 +11,11 @@ class MenuController extends Controller {
         return view('pages.admin', compact('menus'));
     }
 
+    public function showMenu() {
+        $menus = Menu::where('status','tersedia')->get();
+        return view('pages.order', compact('menus'));
+    }
+
     public function create() {
         return view('pages.create_menu');
     }
@@ -20,11 +25,19 @@ class MenuController extends Controller {
             'nama' => 'required|string|max:255',
             'harga' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
             'stok' => 'required|integer',
         ]);
 
-        Menu::create($request->all());
+        $status = $request->stok > 0 ? 'tersedia' : 'habis';
+
+        Menu::create([
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'kategori' => $request->kategori,
+            'status' => $status,
+            'stok' => $request->stok,
+        ]);
+
         return redirect()->route('menu.index')->with('success', 'Menu berhasil ditambahkan.');
     }
 
@@ -37,12 +50,19 @@ class MenuController extends Controller {
         $request->validate([
             'nama' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
             'stok' => 'required|integer',
         ]);
 
         $menu = Menu::find($id);
-        $menu->update($request->all());
+        $status = $request->stok > 0 ? 'tersedia' : 'habis';
+
+        $menu->update([
+            'nama' => $request->nama,
+            'kategori' => $request->kategori,
+            'status' => $status,
+            'stok' => $request->stok,
+        ]);
+
         return redirect()->route('menu.index')->with('success', 'Menu berhasil diperbarui.');
     }
 
@@ -51,4 +71,4 @@ class MenuController extends Controller {
         $menu->delete();
         return redirect()->route('menu.index')->with('success', 'Menu berhasil dihapus.');
     }
-}
+};

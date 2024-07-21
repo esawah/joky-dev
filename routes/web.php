@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,4 +27,10 @@ Route::middleware(['auth'])->group(function () {
     })->name('login.admin');
 });
 
-Route::get('/order', [OrderController::class, 'showOrderPage'])->name('order.page');
+// Rute Order
+Route::get('/order', [OrderController::class, 'order'])->name('order');
+Route::post('/order', [OrderController::class, 'storeOrder'])->name('storeOrder');
+Route::get('/order-list', [OrderController::class, 'orderList'])->name('order.list');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+
+Route::get('/generate-report', [ReportController::class, 'generateReport'])->name('report');
